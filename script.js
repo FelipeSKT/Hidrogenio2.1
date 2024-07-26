@@ -28,9 +28,49 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 
+    const snowParticlesConfig = {
+        particles: {
+            number: { value: 100 },
+            color: { value: '#ffffff' },
+            shape: { type: 'image', image: { src: 'path/to/snowflake.png', width: 100, height: 100 } },
+            opacity: { value: 0.8 },
+            size: { value: 5 },
+            move: { enable: true, speed: 1, direction: 'bottom' }
+        }
+    };
+
+    const leafParticlesConfig = {
+        particles: {
+            number: { value: 100 },
+            color: { value: '#00ff00' },
+            shape: { type: 'image', image: { src: 'folha.png', width: 100, height: 100 } },
+            opacity: { value: 0.8 },
+            size: { value: 12 },
+            line_linked: { enable: false, color: '#ffffff' },
+            move: { enable: true, speed:1.5,  direction: 'bottom' }
+        }
+    };
+
+    const starParticlesConfig = {
+        particles: {
+            number: { value: 100 },
+            color: { value: '#ffffff' },
+            shape: { type: 'image', image: { src: 'star.png', width: 100, height: 100 } },
+            opacity: { value: 0.7, random: true },
+            size: { value: 6, random: true },
+            line_linked: { enable: false, color: '#ffffff' },
+            move: { enable: true, speed: 0.2 }
+        }
+    };
+
     const loadParticlesConfig = (isNightMode) => {
         const config = isNightMode ? darkParticlesConfig : lightParticlesConfig;
         particlesJS('particles-js', config);
+    };
+
+    const loadMainParticlesConfig = (isNightMode) => {
+        const config = isNightMode ? starParticlesConfig : leafParticlesConfig;
+        particlesJS('particles-main', config);
     };
 
     overlay.style.display = 'none';
@@ -40,27 +80,29 @@ document.addEventListener('DOMContentLoaded', function() {
         if (document.body.classList.contains('modo-noturno')) {
             modoNoturnoIcon.src = 'icone_sol.png';
             loadParticlesConfig(true);
+            loadMainParticlesConfig(true);
         } else {
             modoNoturnoIcon.src = 'icone_lua.png';
             loadParticlesConfig(false);
+            loadMainParticlesConfig(false);
         }
     });
 
     centralButton.addEventListener('click', function() {
         overlay.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Desativa o scroll quando o overlay está visível
+        document.body.style.overflow = 'hidden'; 
         loadParticlesConfig(document.body.classList.contains('modo-noturno'));
     });
 
     closeOverlay.addEventListener('click', function() {
         overlay.style.display = 'none';
-        document.body.style.overflow = ''; // Restaura o scroll quando o overlay é fechado
+        document.body.style.overflow = ''; 
     });
 
     overlay.addEventListener('click', function(event) {
         if (event.target === overlay) {
             overlay.style.display = 'none';
-            document.body.style.overflow = ''; // Restaura o scroll quando o overlay é fechado
+            document.body.style.overflow = ''; 
         }
     });
 
@@ -72,4 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
             footer.style.bottom = '-150px';
         }
     });
+
+    loadMainParticlesConfig(document.body.classList.contains('modo-noturno')); // Load main particles on page load
 });
