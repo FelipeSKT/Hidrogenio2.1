@@ -6,38 +6,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const lightParticlesConfig = {
         particles: {
-            number: { value: 50 },
+            number: { value: 90 },
             color: { value: '#000000' },
             shape: { type: 'circle' },
-            opacity: { value: 0.5 },
-            size: { value: 3 },
-            line_linked: { enable: true, color: '#000000' },
-            move: { enable: true, speed: 2 }
+            opacity: { value: 1, random: true },
+            size: { value: 1.5},
+            line_linked: { enable: false, color: '#000000' },
+            move: { enable: true, speed: 0.2 }
         }
     };
 
     const darkParticlesConfig = {
         particles: {
-            number: { value: 50 },
+            number: { value: 90 },
             color: { value: '#ffffff' },
             shape: { type: 'circle' },
-            opacity: { value: 0.5 },
-            size: { value: 3 },
-            line_linked: { enable: true, color: '#ffffff' },
-            move: { enable: true, speed: 2 }
+            opacity: { value: 1, random: true },
+            size: { value: 1.5 },
+            line_linked: { enable: false, color: '#ffffff' },
+            move: { enable: true, speed: 0.2 }
         }
     };
 
-    const snowParticlesConfig = {
-        particles: {
-            number: { value: 100 },
-            color: { value: '#ffffff' },
-            shape: { type: 'image', image: { src: 'path/to/snowflake.png', width: 100, height: 100 } },
-            opacity: { value: 0.8 },
-            size: { value: 5 },
-            move: { enable: true, speed: 1, direction: 'bottom' }
-        }
-    };
 
     const leafParticlesConfig = {
         particles: {
